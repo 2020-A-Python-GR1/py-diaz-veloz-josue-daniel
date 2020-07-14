@@ -1,4 +1,5 @@
 import ast
+import json
 
 def ver_genero():
     i = 1
@@ -31,7 +32,7 @@ def crear_genero():
     Generos.append(genero)
     escribir_archivo(Generos)
     print("Genero creado y guardado")
-    return ejectuar_menu_genero(menu_genero())
+    return seguir_creando(len(Generos))
 
 def editar_genero(genero):
     if(genero > len(Generos)):
@@ -55,6 +56,16 @@ def seguir_editando(genero):
     editar = validar_editar()
     if (editar == 'si'):
         return ejectuar_editar_genero(editar_genero_menu(),genero)
+    else:
+        return ejectuar_menu_genero(menu_genero())
+
+def seguir_creando(genero):
+    editar = validar_crear()
+    if (editar == 'si'):
+        print("Genero Creado:")
+        print(f'-->{genero}._{Generos[genero-1]["genero"]}')
+        print(f'    -Favorito: {Generos[genero-1]["favorito"]} -Region: {Generos[genero-1]["region"]} -Año: {Generos[genero-1]["anio"]} -Ejemplo: {Generos[genero-1]["ejemplo"]}')   
+        return crear_cancion(genero)
     else:
         return ejectuar_menu_genero(menu_genero())
 
@@ -101,7 +112,7 @@ def escribir_archivo(generos):
     f = open("Musica.txt","w")
     f.write( str(generos) )
     f.close()
-
+    
 def eliminar_genero(genero):
     if(genero > len(Generos)):
         genero1 = validar_numero("Ingrese un numero de genero valido: ","genero")
@@ -111,6 +122,14 @@ def eliminar_genero(genero):
         print("Genero Eliminado")
         escribir_archivo(Generos)
         return ejectuar_menu_genero(menu_genero())
+
+def validar_crear():
+    respuesta = input("Quiere crear cancion si o no: ")
+    if(respuesta == "si" or respuesta =="no"):
+        return respuesta
+    else:
+        print("Ingrese una opcion valida")
+        return validar_favorito()
 
 def validar_editar():
     respuesta = input("Seguir editando si o no: ")
@@ -247,8 +266,6 @@ def menu_genero():
     if (len(Generos) == 0):
         print("Menu Principal")
         print("1:Crear Genero")
-        print("2:Editar Genero")
-        print("3.Elimanar Genero")
         print("5.Cerrar Sistema")
         opcion = input("escoger una opcion: ")
         return opcion
