@@ -75,6 +75,21 @@ formato_artista = {
 
 hoja_artistas.conditional_format(rango_celdas,formato_artista)
 
+
+workbook = writer.book
+
+chart = workbook.add_chart({'type': 'column'})
+
+values = "=Artistas!"+rango_celdas
+
+rango_celdas1 = 'A2:A{}'.format(len(num_artistas.index)+1)
+
+category = "=Artistas!"+rango_celdas1
+
+chart.add_series({'categories': category,'values': values})
+
+hoja_artistas.insert_chart('D2', chart)
+
 writer.save()
 
 path_bdd = "C:/Users/josh_/Documents/GitHub/py-diaz-veloz-josue-daniel/03-Panda/bdd_artist.bdd"
@@ -96,9 +111,6 @@ with sqlite3.connect(path_bdd) as conexion:
 sub_df.to_json(path_json)
 
 sub_df.to_json(path_json_tabla, orient = 'table')
-
-
-
 
 
 
