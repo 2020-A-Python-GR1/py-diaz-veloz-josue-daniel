@@ -20,7 +20,7 @@ columnas= ['id','artist','title','medium',
 df2 = pd.read_csv(path, nrows=10,
                   usecols = columnas)
 
-df3 = pd.read_csv(path, nrows=10,
+df3 = pd.read_csv(path,
                   usecols = columnas,
                   index_col='id')
 
@@ -29,3 +29,4 @@ path_guardado = "C:/Users/josh_/Documents/GitHub/py-diaz-veloz-josue-daniel/03-P
 df3.to_pickle(path_guardado)
 
 df4 = pd.read_pickle(path_guardado)
+
