@@ -66,6 +66,15 @@ ROBOTSTXT_OBEY = True
 #    'item_fybeca.pipelines.ItemFybecaPipeline': 300,
 #}
 
+ITEM_PIPELINES = {
+    #carpeta.archivo.clase: orden
+    #menor tiene mayor importacion y mayor tiene menor importancia
+
+    'item_fybeca.pipelines.ItemFybecaPipeline': 300,
+    'item_fybeca.pipelines.TransformarTituloAMinusculas': 100,
+    'item_fybeca.pipelines.SoloCapsulasPipeline': 200,
+}
+
 FEED_Format = 'json'
 FEED_URI = 'tmp/productos-fybeca.json'
 

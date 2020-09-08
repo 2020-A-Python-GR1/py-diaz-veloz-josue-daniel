@@ -15,6 +15,11 @@ class IntroSpider(scrapy.Spider):
         etiqueta_contenedora = response.css(
             'div.product-tile-inner'
         )
+
+        nombres = etiqueta_contenedora.css(
+            'a.name::text'
+        ).extract()
+        
         imagenes = etiqueta_contenedora.css(
             'div.detail > a.image > img#gImg::attr(src)'
         ).extract()
