@@ -6,7 +6,8 @@
 import scrapy
 
 from scrapy.loader.processors import MapCompose
-from scarpy.loader.processors import TakeFirst
+from scrapy.loader.processors import TakeFirst
+
 
 def transformar_url_imagen(texto):
     url_fybeca = 'https://www.fybeca.com'
